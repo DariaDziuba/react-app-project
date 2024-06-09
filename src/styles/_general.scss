@@ -3,13 +3,18 @@
 .page {
     background-color: $primary-white;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     height: 100%;
 
     &-container {
         padding: 40px 0;
         height: 100%;
+        flex: 1;
     }
+}
+
+#root {
+    height: 100vh;
 }
 
 .btn {

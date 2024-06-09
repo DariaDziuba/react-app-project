@@ -54,7 +54,8 @@
     &__details-wrapper {
         display: flex;
         width: 100%;
-        justify-content: flex-start;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     &__description {
@@ -111,5 +112,19 @@
         &__image {
             max-height: 400px;
         }
+    }
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .btn-filtering {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background-color: transparent;
     }
 }

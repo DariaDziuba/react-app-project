@@ -1,29 +1,35 @@
-import { useContext, useState } from 'react';
-import { SearchContext, PaginationContext } from "../../scripts/ProductContext";
 import { FaSearch } from "react-icons/fa";
+import { useState } from 'react';
 
-function onSearchChange(e, setSearchValue, searchContext, paginationDispatch) {
+let timeoutId = '';
+
+function handleInputChange(e, setSearchValue, setSelectedPage, setInputValue) {
     const searchValue = (e.target.value || '').toLowerCase();
-    setSearchValue(searchValue);
+    setInputValue(searchValue);
 
-    searchContext.dispatch({ searchValue: searchValue, paginationDispatch: paginationDispatch});
+    if (timeoutId) {
+        clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(() => {
+        setSearchValue(searchValue);
+        setSelectedPage(1);
+    }, 500);
 }
 
-function Search() {
-    const [searchValue, setSearchValue] = useState('');
-    const searchContext = useContext(SearchContext);
-    const paginationContext = useContext(PaginationContext);
+function Search({ params }) {
+    const [inputValue, setInputValue] = useState(params.searchValue);
 
     return (
-        <div className="input-group mb-3" >
-            <div class="input-group-prepend">
-                <span class="input-group-text"><FaSearch /></span>
+        <div className="input-group" >
+            <div className="input-group-prepend">
+                <span className="input-group-text"><FaSearch /></span>
             </div>
             <input
                 type="text"
                 className="form-control"
-                value={searchValue}
-                onChange={(e) => onSearchChange(e, setSearchValue, searchContext, paginationContext.dispatch)}
+                value={inputValue}
+                onChange={(e) => handleInputChange(e, params.setSearchValue, params.setSelectedPage, setInputValue)}
                 placeholder='Type to search'
             />
         </div>

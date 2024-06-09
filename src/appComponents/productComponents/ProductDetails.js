@@ -1,15 +1,20 @@
 import { useParams } from "react-router-dom";
-import { useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
-import { ProductsContext } from "../../scripts/ProductContext";
 import { ProductsDispatchContext } from "../../scripts/ProductContext";
-import { CURRENCY } from "../../settings";
+import { CURRENCY, SERVER_HOST } from "../../settings";
 
 function ProductDetails() {
     const dispatch = useContext(ProductsDispatchContext);
-    const products = useContext(ProductsContext);
-    const {productId} = useParams();
-    const book = products.find(product => product.id === productId);
+    const { productId } = useParams();
+    const [book, setBook] = useState({});
+
+    useEffect(() => {
+        fetch(SERVER_HOST + `productDetails?pid=${productId}`)
+            .then((res) => res.json())
+            .then((book) => setBook(book) )
+            .catch((error) => console.log(error));
+    }, []);
 
     return (
         <div className='pdp'>
