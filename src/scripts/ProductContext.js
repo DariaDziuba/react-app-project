@@ -6,7 +6,7 @@ export const ProductsContext = createContext(null);
 export const ProductsDispatchContext = createContext(null);
 export const MiniCartItemsQtyContext = createContext(null);
 export const PaginationContext = createContext(null);
-export const PaginationDispatchContext = createContext(null);
+export const SearchContext = createContext(null);
 
 function miniCartItemsReducer(miniCartItems, action) {
     const bookId = (action.book && action.book.id) || action.bookId || '';
@@ -42,6 +42,27 @@ function miniCartItemsReducer(miniCartItems, action) {
     }
 }
 
+function getProducts() {
+    return productItems;
+}
+
+function searchReducer(searchedProducts, params) {
+    let products = getProducts();
+
+    if (params.searchValue) {
+        products = products.filter((product) => {
+            const isNameValid = product.name.toLowerCase().includes(params.searchValue);
+            const isAuthorValid = product.author.toString().toLowerCase().includes(params.searchValue);
+
+            return isNameValid || isAuthorValid;
+        });
+    }
+
+    params.paginationDispatch({ selectedPage: 1, productItems: products });
+
+    return products;
+}
+
 function paginationReducer(pageInfo, params) {
     if (!params.selectedPage) {
         return pageInfo;
@@ -49,14 +70,12 @@ function paginationReducer(pageInfo, params) {
 
     const endIndex = params.selectedPage * PAGINATION_STEP;
     const startIndex = endIndex - PAGINATION_STEP;
-    pageInfo.products = params.productItems.slice(startIndex, endIndex);
-    pageInfo.selectedPage = params.selectedPage;
 
-    return { ...pageInfo };
-}
-
-function getProducts() {
-    return productItems;
+    return {
+        products: params.productItems.slice(startIndex, endIndex),
+        selectedPage: params.selectedPage,
+        pagesLength: Math.ceil(params.productItems.length / PAGINATION_STEP)
+    };
 }
 
 export function ProductsProvider({children}) {
@@ -66,18 +85,19 @@ export function ProductsProvider({children}) {
         pagesLength: Math.ceil(productItems.length / PAGINATION_STEP),
         products: [...productItems].slice(0, PAGINATION_STEP)
     });
+    const [searchedProducts, searchDispatch] = useReducer(searchReducer, getProducts());
 
     return (
         <ProductsContext.Provider value={getProducts()}>
-            <PaginationContext.Provider value={pageInfo}>
-                <PaginationDispatchContext.Provider value={paginationDispatch}>
+            <SearchContext.Provider value={{ products: searchedProducts, dispatch: searchDispatch }}>
+                <PaginationContext.Provider value={{ pageInfo: pageInfo, dispatch: paginationDispatch}}>
                     <ProductsDispatchContext.Provider value={dispatch}>
                         <MiniCartItemsQtyContext.Provider value={miniCartItems}>
                             {children}
                         </MiniCartItemsQtyContext.Provider>
                     </ProductsDispatchContext.Provider>
-                </PaginationDispatchContext.Provider>
-            </PaginationContext.Provider>
+                </PaginationContext.Provider>
+            </SearchContext.Provider>
         </ProductsContext.Provider>
     );
 }
