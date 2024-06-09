@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { PaginationContext, PaginationDispatchContext, SearchContext } from "../../scripts/ProductContext";
+import { PaginationContext, SearchContext } from "../../scripts/ProductContext";
 import Book from './Book.js';
 import Search from '../search/Search';
 
@@ -21,16 +21,16 @@ function getPagination(pagination, paginationDispatch, products) {
 }
 
 function BooksGrid() {
-    const pagination = useContext(PaginationContext);
-    const paginationDispatch = useContext(PaginationDispatchContext);
+    const paginationContext = useContext(PaginationContext);
     const searchContext = useContext(SearchContext);
+    const pageInfo = paginationContext.pageInfo;
 
     return (
         <div className="books-grid-wrapper">
             <Search />
             <div className='books-grid'>
                 {
-                    pagination.products.map((book, key) => (
+                    pageInfo.products.map((book, key) => (
                         <div key={key} id={book.id} className="books-wrapper">
                             <Book book={book}/>
                         </div>
@@ -38,7 +38,7 @@ function BooksGrid() {
                 }
             </div>
             <div className="books-pagination">
-                { getPagination(pagination, paginationDispatch, searchContext.products) }
+                { getPagination(pageInfo, paginationContext.dispatch, searchContext.products) }
             </div>
         </div>
     )

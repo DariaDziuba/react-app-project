@@ -6,7 +6,6 @@ export const ProductsContext = createContext(null);
 export const ProductsDispatchContext = createContext(null);
 export const MiniCartItemsQtyContext = createContext(null);
 export const PaginationContext = createContext(null);
-export const PaginationDispatchContext = createContext(null);
 export const SearchContext = createContext(null);
 
 function miniCartItemsReducer(miniCartItems, action) {
@@ -48,22 +47,20 @@ function getProducts() {
 }
 
 function searchReducer(searchedProducts, params) {
-    const products = getProducts();
+    let products = getProducts();
 
-    if (!params.searchValue) {
-        return products;
+    if (params.searchValue) {
+        products = products.filter((product) => {
+            const isNameValid = product.name.toLowerCase().includes(params.searchValue);
+            const isAuthorValid = product.author.toString().toLowerCase().includes(params.searchValue);
+
+            return isNameValid || isAuthorValid;
+        });
     }
 
-    const filteredProducts = products.filter((product) => {
-        const isNameValid = product.name.toLowerCase().includes(params.searchValue);
-        const isAuthorValid = product.author.toString().toLowerCase().includes(params.searchValue);
+    params.paginationDispatch({ selectedPage: 1, productItems: products });
 
-        return isNameValid || isAuthorValid;
-    });
-
-    params.paginationDispatch({ selectedPage: 1, productItems: filteredProducts });
-
-    return filteredProducts;
+    return products;
 }
 
 function paginationReducer(pageInfo, params) {
@@ -93,14 +90,12 @@ export function ProductsProvider({children}) {
     return (
         <ProductsContext.Provider value={getProducts()}>
             <SearchContext.Provider value={{ products: searchedProducts, dispatch: searchDispatch }}>
-                <PaginationContext.Provider value={pageInfo}>
-                    <PaginationDispatchContext.Provider value={paginationDispatch}>
-                        <ProductsDispatchContext.Provider value={dispatch}>
-                            <MiniCartItemsQtyContext.Provider value={miniCartItems}>
-                                {children}
-                            </MiniCartItemsQtyContext.Provider>
-                        </ProductsDispatchContext.Provider>
-                    </PaginationDispatchContext.Provider>
+                <PaginationContext.Provider value={{ pageInfo: pageInfo, dispatch: paginationDispatch}}>
+                    <ProductsDispatchContext.Provider value={dispatch}>
+                        <MiniCartItemsQtyContext.Provider value={miniCartItems}>
+                            {children}
+                        </MiniCartItemsQtyContext.Provider>
+                    </ProductsDispatchContext.Provider>
                 </PaginationContext.Provider>
             </SearchContext.Provider>
         </ProductsContext.Provider>
