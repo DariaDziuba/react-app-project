@@ -1,25 +1,19 @@
 import { useEffect, useState, } from 'react';
 import Book from './Book.js';
-import Search from '../search/Search';
+import Search from '../Search';
+import Pagination from '../Pagination';
 import { SERVER_HOST } from "../../settings";
 import { FaStar, FaRegStar } from "react-icons/fa6";
 import { useSearchParams } from "react-router-dom";
+import { appendParamsToUrl } from '../../utils.js';
 
-function getPagination(pagination, setSelectedPage) {
-    const paginationArr = [];
+function fetchPageInfo(urlParams, setPageInfo) {
+    const url = appendParamsToUrl(SERVER_HOST + 'products', urlParams);
 
-    for (let i = 1; i <= pagination.pagesLength; i++) {
-        paginationArr.push(
-            <button key={`page-${i}`}
-                className={`btn books-pagination_btn ${pagination.selectedPage === i ? 'btn-secondary btn-selected' : 'btn-outline-secondary'}`}
-                onClick={() => setSelectedPage(i)}
-            >
-                <b>{i}</b>
-            </button>
-        );
-    }
-
-    return paginationArr;
+    fetch(url)
+        .then((res) => res.json())
+        .then((data) => setPageInfo(data))
+        .catch((error) => console.log(error));
 }
 
 function BooksGrid() {
@@ -35,22 +29,24 @@ function BooksGrid() {
     });
 
     useEffect(() => {
-        fetch(SERVER_HOST + `products?selectedPage=${selectedPage}&searchValue=${searchValue}&applyRating=${applyRating}`)
-            .then((res) => res.json())
-            .then((data) => setPageInfo(data) )
-            .catch((error) => console.log(error));
+        const urlParams = {
+            selectedPage: selectedPage,
+            searchValue: searchValue,
+            applyRating: applyRating
+        }
+
+        fetchPageInfo(urlParams, setPageInfo);
     }, [selectedPage, searchValue, applyRating]);
 
     return (
         <div className="books-grid-wrapper">
-            <div class="search-wrapper">
-                <Search params={{
-                        setSearchValue: (searchValue) => setSearchParams(searchValue ? { 'searchValue': searchValue } : {}, {replace: true}),
-                        searchValue: searchValue,
-                        setSelectedPage: setSelectedPage
-                    }}
+            <div className="search-wrapper">
+                <Search
+                        setSearchValue={(searchValue) => setSearchParams(searchValue ? { 'searchValue': searchValue } : {}, {replace: true})}
+                        searchValue={searchValue}
+                        setSelectedPage={setSelectedPage}
                 />
-                <button onClick={() => setApplyRating(!applyRating)} class="btn-filtering">
+                <button onClick={() => setApplyRating(!applyRating)} className="btn-filtering">
                     { applyRating ? <FaStar /> : <FaRegStar /> }
                 </button>
             </div>
@@ -64,9 +60,7 @@ function BooksGrid() {
                     ))
                 }
             </div>
-            <div className="books-pagination">
-                { getPagination(pageInfo, setSelectedPage) }
-            </div>
+            <Pagination pageInfo={pageInfo} setSelectedPage={setSelectedPage} />
         </div>
     )
 }

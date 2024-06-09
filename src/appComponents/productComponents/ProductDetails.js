@@ -3,6 +3,16 @@ import { useEffect, useState, useContext } from 'react';
 
 import { ProductsDispatchContext } from "../../scripts/ProductContext";
 import { CURRENCY, SERVER_HOST } from "../../settings";
+import Raiting from "./Raiting";
+import { appendParamsToUrl } from '../../utils.js';
+
+function fetchProduct(urlParams, setBook) {
+    const url = appendParamsToUrl(`${SERVER_HOST}productDetails`, urlParams);
+    fetch(url)
+        .then((res) => res.json())
+        .then((book) => setBook(book) )
+        .catch((error) => console.log(error));
+}
 
 function ProductDetails() {
     const dispatch = useContext(ProductsDispatchContext);
@@ -10,10 +20,11 @@ function ProductDetails() {
     const [book, setBook] = useState({});
 
     useEffect(() => {
-        fetch(SERVER_HOST + `productDetails?pid=${productId}`)
-            .then((res) => res.json())
-            .then((book) => setBook(book) )
-            .catch((error) => console.log(error));
+        const urlParams = {
+            pid: productId
+        };
+
+        fetchProduct(urlParams, setBook);
     }, []);
 
     return (
@@ -39,6 +50,7 @@ function ProductDetails() {
                 <div className='book__details'>
                     <h3 className='book__name'>{`${book.name} | ${book.author}`}</h3>
                     <p className='book__description-detailed'>{book.description}</p>
+                    <Raiting params={{ book: book }}/>
                     <div className='book__price'>
                         <h5>{`${book.price} ${CURRENCY}`}</h5>
                     </div>

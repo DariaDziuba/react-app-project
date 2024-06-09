@@ -1,0 +1,110 @@
+[
+    {
+        "id": "001",
+        "imageUrl": "/productImages/book-1.png",
+        "name": "A Smarter Way to Learn JavaScript: The new tech-assisted approach that requires half the effort",
+        "author": "Mark Myers",
+        "description": "The entire 256-page long JavaScript book is judiciously divided into brief chapters. Each of the chapters is followed by 20 absolutely-free sample exercises available at the author’s website. You can do them over and over again to completely digest all the information you just read.",
+        "price": "15.00",
+        "rating":"1"
+    },
+    {
+        "id": "002",
+        "imageUrl": "/productImages/book-2.png",
+        "name": "Eloquent JavaScript: A Modern Introduction to Programming",
+        "author": "Marjin Haverbeke",
+        "description": "Eloquent JavaScript lets the reader digest all its knowledge easily thanks to an easy to understand and relatable language. Though not essentially a JavaScript book, it offers an introduction to programming using JavaScript.",
+        "price": "12.00",
+        "rating":"3"
+    },
+    {
+        "id": "003",
+        "imageUrl": "/productImages/book-3.png",
+        "name": "JavaScript & JQuery: Interactive Front-End Web Development",
+        "author": "Jon Duckett",
+        "description": "Interested in learning JavaScript & jQuery side-by-side for getting started with web development? JavaScript and JQuery: Interactive Front-End Web Development is the top recommendation.",
+        "price": "9.00",
+        "rating":"5"
+    },
+    {
+        "id": "004",
+        "imageUrl": "/productImages/book-4.png",
+        "name": "JavaScript: The Good Parts",
+        "author": "Douglas Crockford",
+        "description": "With the JavaScript: The Good Parts, author Douglas Crockford focuses on the basics of some of the lesser-known yet desirable aspects of JavaScript. It’s only recently that these hidden features are getting the appreciation they deserve from the programming community.",
+        "price": "14.00",
+        "rating":"1"
+    },
+    {
+        "id": "005",
+        "imageUrl": "/productImages/book-5.png",
+        "name": "Learn JavaScript VISUALLY",
+        "author": "Ivelin Demirov",
+        "description": "For newbies wishing to quickly grasp the basics of JavaScript, Learn JavaScript VISUALLY the ideal book to go for. The book makes understanding the basic JS concepts easier by means of a visual approach, hence the name.",
+        "price": "10.50",
+        "rating":"5"
+    },
+    {
+        "id": "006",
+        "imageUrl": "/productImages/book-6.png",
+        "name": "JavaScript: The Definitive Guide",
+        "author": "David Flanagan",
+        "description": "In order to get an in-depth understanding of the workings of closure, graphics, and prototyping, JavaScript: The Definitive Guide is the definite pick. The page count for the book reaches well over 1000 pages, divided into thorough chapters full of examples.",
+        "price": "7.99",
+        "rating":"2"
+    },
+    {
+        "id": "007",
+        "imageUrl": "/productImages/book-7.png",
+        "name": "Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript",
+        "author": "David Herman, Foreword by Brendan Eich",
+        "description": "Anyone who has an ample understanding of the JS basics qualifies to gain the most out of Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript. The JavaScript book takes its readers on an in-depth tour of the high-level, interpreted programming language.",
+        "price": "18.00",
+        "rating":"2"
+    },
+    {
+        "id": "008",
+        "imageUrl": "/productImages/book-8.png",
+        "name": "JavaScript for Kids: A Playful Introduction to Programming",
+        "author": "Nick Morgan",
+        "description": "The name of the book kind of puns on those that are new to the world of programming. JavaScript for Kids: A Playful Introduction to Programming offers a fanciful exploration of the various basic programming concepts.",
+        "price": "25.00",
+        "rating":"5"
+    },
+    {
+        "id": "009",
+        "imageUrl": "/productImages/book-9.png",
+        "name": "Programming JavaScript Applications: Robust Web Architecture with Node, HTML5, and Moderns JS Libraries",
+        "author": "Eric Elliott",
+        "description": "Unlike other JS books that answer the question, “How do I use JavaScript?” Programming JavaScript Applications: Robust Web Architecture with Node, HTML5, and Modern JS Libraries answers, “How do I use JavaScript to build a real-world application?”",
+        "price": "13.00",
+        "rating":"5"
+    },
+    {
+        "id": "010",
+        "imageUrl": "/productImages/book-10.png",
+        "name": "High-Performance Browser Networking",
+        "author": "Ilya Grigorik",
+        "description": "Application performance is something that everyone, ranging from independent developers to full-fledged organizations, crave for. High-Performance Browser Networking is the ultimate guide for building a successful JavaScript application with highly optimized performance.",
+        "price": "14.00",
+        "rating":"5"
+    },
+    {
+        "id": "011",
+        "imageUrl": "/productImages/book-11.png",
+        "name": "You Don’t Know JS",
+        "author": "Kyle Simpson",
+        "description": "Unlike other names on the list, You Don’t Know JS is a book series. All books of the series share similarity in style and scope. The JavaScript book series help readers get acquainted with the most subtle technical aspects of the high-level, interpreted programming language.",
+        "price": "21.00",
+        "rating":"3"
+    },
+    {
+        "id": "012",
+        "imageUrl": "/productImages/book-12.png",
+        "name": "JavaScript Allongé, the “Six” Edition",
+        "author": "Reg “raganwald” Braithwaite",
+        "description": "Building flexible software from small, decoupled units and thinking in terms of functions is all about the JavaScript Allongé, the “Six” Edition. The JavaScript book aims at making the reader think deeply and out-of-the-box about functions, and it succeeds in doing so. This is also the best book for javascript learning.",
+        "price": "11.00",
+        "rating":"3"
+    }
+]

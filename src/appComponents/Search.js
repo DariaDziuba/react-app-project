@@ -17,8 +17,8 @@ function handleInputChange(e, setSearchValue, setSelectedPage, setInputValue) {
     }, 500);
 }
 
-function Search({ params }) {
-    const [inputValue, setInputValue] = useState(params.searchValue);
+function Search({ setSearchValue, searchValue, setSelectedPage }) {
+    const [inputValue, setInputValue] = useState(searchValue);
 
     return (
         <div className="input-group" >
@@ -29,7 +29,7 @@ function Search({ params }) {
                 type="text"
                 className="form-control"
                 value={inputValue}
-                onChange={(e) => handleInputChange(e, params.setSearchValue, params.setSelectedPage, setInputValue)}
+                onChange={(e) => handleInputChange(e, setSearchValue, setSelectedPage, setInputValue)}
                 placeholder='Type to search'
             />
         </div>
