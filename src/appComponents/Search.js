@@ -23,7 +23,7 @@ function Search({ setSearchValue, searchValue, setSelectedPage }) {
     return (
         <div className="input-group" >
             <div className="input-group-prepend">
-                <span className="input-group-text"><FaSearch /></span>
+                <span className="input-group-text" data-testid="search-icon"><FaSearch /></span>
             </div>
             <input
                 type="text"
