@@ -40,7 +40,7 @@ export default function MiniCartItem({book}) {
                 </div>
             </div>
             <div className="book__remove">
-                <button className='btn btn-outline-secondary btn-sm-22' onClick={() => {
+                <button className='btn btn-secondary btn-sm-22' onClick={() => {
                     dispatch({
                         type: 'remove',
                         bookId: book.id

@@ -16,7 +16,7 @@
     &-outline-secondary {
         border-color: $secondary-black !important;
         color: $secondary-black !important;
-    
+
         &:hover {
             background-color: $secondary-black !important;
             color: $primary-white !important;
@@ -64,5 +64,11 @@ button.add-to-cart {
     &:hover {
         color: $secondary-black;
         box-shadow: inset 400px 0 0 0 $primary-yellow;
+    }
+}
+
+.form-control {
+    &:focus {
+        box-shadow: 0 0 0 0.2rem $primary-yellow !important;
     }
 }
