@@ -77,3 +77,11 @@ button.add-to-cart {
         box-shadow: 0 0 0 0.2rem $primary-yellow !important;
     }
 }
+
+.page__not-found {
+    height: 100%;
+    font-size: xxx-large;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
