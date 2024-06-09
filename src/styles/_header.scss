@@ -1,0 +1,80 @@
+@import "utilities/variables";
+
+.header {
+    width: 100%;
+    height: 100px;
+    background-color: $primary-yellow;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    &__logo {
+        height: 46px;
+    }
+}
+
+.minicart {
+    $minicart: &;
+
+    width: 60px;
+    height: 60px;
+    color: $primary-black;
+    font-size: 20px;
+    float: inline-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &__inner {
+        display: none;
+        position: absolute;
+        right: -20px;
+        top: 100%;
+        width: 500px;
+        height: 500px;
+        overflow-y: auto;
+        background-color: $primary-white;
+        box-shadow: 0 0 5px 0 $primary-gray;
+        border-radius: 4px;
+        overflow: auto;
+    }
+
+    &__icon {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__counter {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        font-size: large;
+    }
+
+    &:hover {
+        #{$minicart}__inner {
+            display: block;
+        }
+    }
+
+    &-item {
+        display: flex;
+        padding: 16px;
+        gap: 16px;
+
+        .book {
+            &__image {
+                height: 90px;
+            }
+
+            &__details {
+                color: $primary-black;
+                width: 100%;
+            }
+        }
+    }
+}
