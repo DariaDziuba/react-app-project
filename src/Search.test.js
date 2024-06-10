@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Search from './appComponents/Search';
+import Search from './components/Search';
 
 describe('Search component', () => {
     it('renders input field and icon correctly', () => {

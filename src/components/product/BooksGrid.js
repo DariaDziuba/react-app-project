@@ -1,20 +1,10 @@
 import { useEffect, useState, } from 'react';
 import Book from './Book.js';
-import Search from '../Search';
-import Pagination from '../Pagination';
-import { SERVER_HOST } from "../../settings";
+import Search from '../Search.js';
+import Pagination from '../Pagination.js';
 import { FaStar, FaRegStar } from "react-icons/fa6";
 import { useSearchParams } from "react-router-dom";
-import { appendParamsToUrl } from '../../utils.js';
-
-function fetchPageInfo(urlParams, setPageInfo) {
-    const url = appendParamsToUrl(SERVER_HOST + 'filteredProducts', urlParams);
-
-    fetch(url)
-        .then((res) => res.json())
-        .then((data) => setPageInfo(data))
-        .catch((error) => console.log(error));
-}
+import { fetchPageInfo } from '../../scripts/helpers/fetchHelpers.js'
 
 function BooksGrid() {
     const [searchParams, setSearchParams] = useSearchParams({ searchValue: '' });

@@ -2,17 +2,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from 'react';
 
 import { ProductsDispatchContext } from "../../scripts/ProductContext";
-import { CURRENCY, SERVER_HOST } from "../../settings";
+import { CURRENCY } from "../../settings";
 import Raiting from "./Raiting";
-import { appendParamsToUrl } from '../../utils.js';
-
-function fetchProduct(urlParams, setBook) {
-    const url = appendParamsToUrl(`${SERVER_HOST}productDetails`, urlParams);
-    fetch(url)
-        .then((res) => res.json())
-        .then((book) => setBook(book) )
-        .catch((error) => console.log(error));
-}
+import { fetchProduct } from '../../scripts/helpers/fetchHelpers';
 
 function ProductDetails() {
     const dispatch = useContext(ProductsDispatchContext);

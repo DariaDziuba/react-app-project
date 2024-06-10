@@ -6,63 +6,9 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(cors());
 
-function getPageProduct(products, selectedPage) {
-    const { PAGINATION_STEP } = require('../src/settings');
-    const pagesLength = Math.ceil(products.length / PAGINATION_STEP);
-
-    const endIndex = selectedPage * PAGINATION_STEP;
-    const startIndex = endIndex - PAGINATION_STEP;
-
-    products = products.slice(startIndex, endIndex);
-
-    return {
-        products: products,
-        selectedPage: selectedPage,
-        pagesLength: pagesLength
-    }
-}
-
-function getSearchedProducts(products, searchValue) {
-    if (!searchValue) {
-        return products;
-    }
-
-    return products.filter((product) => {
-        const isNameValid = product.name.toLowerCase().includes(searchValue);
-        const isAuthorValid = product.author.toString().toLowerCase().includes(searchValue);
-
-        return isNameValid || isAuthorValid;
-    });
-}
-
-function getFilteredProducts(products, params) {
-    if (!params.applyRating) {
-        return products;
-    }
-
-    return [...products].sort((a, b) => {
-        const aRating = Number(a.rating);
-        const bRating = Number(b.rating);
-
-        if (aRating > bRating) {
-            return -1;
-        } else if (aRating < bRating) {
-            return 1;
-        }
-
-        return 0;
-    });
-}
-
-function getProcessedProducts(products, params) {
-    let searchedProducts = getSearchedProducts(products, params.searchValue);
-    searchedProducts = getFilteredProducts(searchedProducts, params);
-
-    return getPageProduct(searchedProducts, params.selectedPage);
-}
-
 app.get('/filteredProducts', (req, res) => {
     const products = require('./config/products.json');
+    const { getProcessedProducts } = require('./helpers/filteringHelper');
     const selectedPage = Number(req.query.selectedPage || '1');
     const searchValue = req.query.searchValue || '';
     const applyRating = req.query.applyRating === 'true';

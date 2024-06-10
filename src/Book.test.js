@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { ProductsDispatchContext } from 'scripts/ProductContext';
-import Book from './appComponents/productComponents/Book';
+import Book from './components/product/Book';
 import { CURRENCY } from "./settings";
 
 describe('Book component', () => {

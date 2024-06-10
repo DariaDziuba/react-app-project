@@ -1,9 +1,7 @@
 import './styles/Global.scss';
-
-import Header from './appComponents/header/Header.js';
-import Router from "./appComponents/Router.js";
+import Header from './components/header/Header.js';
+import Router from "./components/Router.js";
 import { Link } from "react-router-dom";
-
 import { ProductsProvider } from './scripts/ProductContext.js';
 
 function App() {
@@ -16,8 +14,6 @@ function App() {
                     <Router />
                 </div>
             </ProductsProvider>
-
-
         </div>
     );
 }
