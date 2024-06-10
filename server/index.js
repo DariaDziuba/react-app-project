@@ -61,10 +61,10 @@ function getProcessedProducts(products, params) {
     return getPageProduct(searchedProducts, params.selectedPage);
 }
 
-app.get('/products', (req, res) => {
+app.get('/filteredProducts', (req, res) => {
     const products = require('./config/products.json');
     const selectedPage = Number(req.query.selectedPage || '1');
-    const searchValue = req.query.searchValue;
+    const searchValue = req.query.searchValue || '';
     const applyRating = req.query.applyRating === 'true';
 
     const productInfo = getProcessedProducts(products, {
@@ -82,6 +82,13 @@ app.get('/productDetails', (req, res) => {
     const product = pid ? products.find(product => pid === product.id) : {};
 
     res.json(product);
+});
+
+app.get('/products', (req, res) => {
+    const products = require('./config/products.json');
+    const neededLength = Number(req.query.neededLength || '0') || products.length;
+
+    res.json(products.slice(0, neededLength));
 });
 
 app.listen(PORT, () => {

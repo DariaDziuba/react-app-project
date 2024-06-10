@@ -14,7 +14,7 @@ function Raiting({ params }) {
     }
 
     return (
-        <div className="d-flex">
+        <div className="d-flex mb-3">
             { reatingArray }
         </div>
     );

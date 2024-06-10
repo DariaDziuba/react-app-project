@@ -3,6 +3,17 @@ import { MiniCartItemsQtyContext } from '../../scripts/ProductContext.js';
 import { useContext } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 
+function getMiniCartItemsCount(miniCartItems) {
+    let itemsCount = 0;
+
+    Object.keys(miniCartItems).forEach((key) => {
+        const miniCartItem = miniCartItems[key];
+        itemsCount += miniCartItem.qty;
+    });
+
+    return itemsCount;
+}
+
 function MiniCart() {
     const miniCartItems = useContext(MiniCartItemsQtyContext);
 
@@ -12,7 +23,7 @@ function MiniCart() {
                 <FaShoppingCart className="w-100" style={ {color: 'black' }} />
             </div>
             <div className="minicart__counter">
-                {Object.keys(miniCartItems).length}
+                {getMiniCartItemsCount(miniCartItems)}
             </div>
             <div className="minicart__inner">
                 {

@@ -78,3 +78,18 @@
         }
     }
 }
+
+.category {
+    &__link {
+        text-decoration: none !important;
+    }
+
+    &__inner {
+        color: $primary-black;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: bold;
+    }
+}

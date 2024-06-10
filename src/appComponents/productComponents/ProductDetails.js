@@ -29,7 +29,6 @@ function ProductDetails() {
 
     return (
         <div className='pdp'>
-            <p>Book Details</p>
             <div>
                 <img
                     className='book__image'

@@ -8,7 +8,7 @@ import { useSearchParams } from "react-router-dom";
 import { appendParamsToUrl } from '../../utils.js';
 
 function fetchPageInfo(urlParams, setPageInfo) {
-    const url = appendParamsToUrl(SERVER_HOST + 'products', urlParams);
+    const url = appendParamsToUrl(SERVER_HOST + 'filteredProducts', urlParams);
 
     fetch(url)
         .then((res) => res.json())

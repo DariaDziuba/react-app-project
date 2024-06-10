@@ -12,9 +12,12 @@ function miniCartItemsReducer(miniCartItems, action) {
 
     switch (action.type) {
         case 'add':
-                miniCartItems[bookId] = action.book;
-                miniCartItems[bookId].qty = 1;
-
+                if (miniCartItems[bookId]) {
+                    miniCartItems[bookId].qty += 1;
+                } else {
+                    miniCartItems[bookId] = action.book;
+                    miniCartItems[bookId].qty = 1;
+                }
             return { ...miniCartItems };
         case 'increase':
             miniCartItems[bookId].qty++;

@@ -9,7 +9,7 @@ function Book({book}) {
 
     return (
         <div className='book'>
-            <Link to={`details/${book.id}`} className="book__link">
+            <Link to={`/details/${book.id}`} className="book__link">
                 <div className="book__wrapper">
                     <img
                         className='book__wrapper_image'
