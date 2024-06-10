@@ -7,7 +7,7 @@ function Header() {
         <header className='header' role="main">
             <div className='container'>
                 <div className='row justify-content-between align-items-center'>
-                    <Link to="/"><img className="header__logo" src="./logo.png" alt='logo' /></Link>
+                    <Link to="/"><img className="header__logo" src={ process.env.PUBLIC_URL + "/logo.png" } alt='logo' /></Link>
                     <Link to="/shop" className="category__link">
                         <div className="category__inner">
                             <span>SHOP</span>
