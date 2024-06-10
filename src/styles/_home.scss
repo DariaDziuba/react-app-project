@@ -27,8 +27,12 @@
     &__image {
         height: 600px;
     }
-}
 
-.carousel-indicator {
-    background-color: $primary-gray !important;
+    &-indicators {
+        bottom: 25px !important;
+    }
+
+    &-indicator {
+        background-color: $primary-gray !important;
+    }
 }

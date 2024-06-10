@@ -13,6 +13,11 @@ function App() {
                     <Link to="/"></Link>
                     <Router />
                 </div>
+                <footer>
+                    <div className='page__footer'>
+                        © Daria Dziuba
+                    </div>
+                </footer>
             </ProductsProvider>
         </div>
     );

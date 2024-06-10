@@ -37,7 +37,7 @@ function Carousel() {
                 products.map((product, i) => <CarouselItem product={product} activeSlide={activeSlide} index={i} /> )
             }
 
-            <ol className="carousel-indicators ">
+            <ol className="carousel-indicators">
                 {
                     products.map((product, i) => <CarouselIndicator activeSlide={activeSlide} index={i} setActiveSlide={setActiveSlide} /> )
                 }

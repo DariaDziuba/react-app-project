@@ -11,6 +11,17 @@
         height: 100%;
         flex: 1;
     }
+
+    &__footer {
+        display: flex;
+        background-color: $secondary-gray;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        color: $primary-white;
+        font-weight: bold;
+        font-size: 17px;
+    }
 }
 
 #root {
