@@ -4,7 +4,7 @@
     background-color: $primary-white;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    min-height: 100vh;
 
     &-container {
         padding: 40px 0;
@@ -25,7 +25,7 @@
 }
 
 #root {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .btn {
