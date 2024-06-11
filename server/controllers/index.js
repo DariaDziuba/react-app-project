@@ -7,8 +7,8 @@ const app = express();
 app.use(cors());
 
 app.get('/filteredProducts', (req, res) => {
-    const products = require('./config/products.json');
-    const { getProcessedProducts } = require('./helpers/filteringHelper');
+    const products = require('../config/products.json');
+    const { getProcessedProducts } = require('../helpers/filteringHelper');
     const selectedPage = Number(req.query.selectedPage || '1');
     const searchValue = req.query.searchValue || '';
     const applyRating = req.query.applyRating === 'true';
@@ -23,7 +23,7 @@ app.get('/filteredProducts', (req, res) => {
 });
 
 app.get('/productDetails', (req, res) => {
-    const products = require('./config/products.json');
+    const products = require('../config/products.json');
     const pid = req.query.pid;
     const product = pid ? products.find(product => pid === product.id) : {};
 
@@ -31,7 +31,7 @@ app.get('/productDetails', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
-    const products = require('./config/products.json');
+    const products = require('../config/products.json');
     const neededLength = Number(req.query.neededLength || '0') || products.length;
 
     res.json(products.slice(0, neededLength));

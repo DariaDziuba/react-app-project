@@ -22,7 +22,7 @@
     "webpack-dev-server": "^5.0.4"
   },
   "scripts": {
-    "server": "nodemon server/index.js",
+    "server": "nodemon server/controllers/index.js",
     "client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

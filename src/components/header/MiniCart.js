@@ -14,6 +14,26 @@ function getMiniCartItemsCount(miniCartItems) {
     return itemsCount;
 }
 
+function getMiniCartItems(miniCartItems) {
+    if (!Object.keys(miniCartItems).length) {
+        return (
+            <div class="justify-content-center d-flex">
+                <h5 className='mt-3'>You haven't added any product to cart...</h5>
+            </div>
+        );
+    }
+
+    return Object.keys(miniCartItems).map(key => {
+        const book = miniCartItems[key];
+
+        return (
+            <div key={key} id={book.id}>
+                <MiniCartItem book={book}/>
+            </div>
+        )
+    })
+}
+
 function MiniCart() {
     const miniCartItems = useContext(MiniCartItemsQtyContext);
 
@@ -26,17 +46,7 @@ function MiniCart() {
                 {getMiniCartItemsCount(miniCartItems)}
             </div>
             <div className="minicart__inner">
-                {
-                    Object.keys(miniCartItems).map(key => {
-                        const book = miniCartItems[key];
-
-                        return (
-                            <div key={key} id={book.id}>
-                                <MiniCartItem book={book}/>
-                            </div>
-                        )
-                    })
-                }
+                { getMiniCartItems(miniCartItems) }
             </div>
         </div>
     )

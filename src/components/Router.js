@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import BooksGrid from "./product/BooksGrid";
 import ProductDetails from "./product/ProductDetails";
-import NotFound from "./pages/NotFound";
-import Home from "./pages/Home";
+import NotFound from "../pages/NotFound";
+import Home from "../pages/Home";
 
 function Router() {
     return (
